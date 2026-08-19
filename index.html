@@ -255,7 +255,7 @@
             </div>
 
             <!-- Form Start -->
-            <form id="ai-nursing-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdnBVGIL2YkvHV_wYRX4UZbO9UgZuTfpjVc4E_XC_L8ba-QpA/formResponse" method="POST" target="hidden_iframe" onsubmit="handleFormSubmit()">
+            <form id="ai-nursing-form" onsubmit="handleFormSubmit(event)">
 
                 <!-- STEP 1: Personal Details -->
                 <div id="step-1" class="step-container active">
@@ -367,7 +367,7 @@
                             <option value="מרפאות חוץ">מרפאות חוץ</option>
                             <option value="מכון או יחידה טיפולית">מכון או יחידה טיפולית</option>
                             <option value="הנהלת האחיות">הנהלת האחיות</option>
-                            <option value="אחר">אחר..</option>
+                            <option value="אחר..">אחר..</option>
                         </select>
                     </div>
 
@@ -735,7 +735,7 @@
                     <div class="flex justify-between mt-10 pt-6 border-t border-metal-700">
                         <button type="button" onclick="nextStep(5)" class="px-6 py-3 rounded-xl text-slate-400 hover:text-white transition-colors">חזור</button>
                         <!-- SUBMIT BUTTON -->
-                        <button type="submit" class="btn-orange px-10 py-4 rounded-xl font-bold flex items-center gap-3 text-xl">
+                        <button type="submit" id="submit-btn" class="btn-orange px-10 py-4 rounded-xl font-bold flex items-center gap-3 text-xl">
                             <span>שליחת שאלון</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -746,9 +746,6 @@
 
             </form>
             
-            <!-- Hidden Iframe to catch submission quietly -->
-            <iframe name="hidden_iframe" id="hidden_iframe" class="hidden" onload="if(window.submitted) showSuccess();"></iframe>
-
             <!-- Success Message (Hidden initially) -->
             <div id="success-message" class="hidden text-center py-16 animate-slide-up">
                 <div class="w-24 h-24 bg-gradient-to-br from-[#10B981] to-[#047857] rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_40px_rgba(16,185,129,0.4)] border-4 border-metal-800">
@@ -802,10 +799,13 @@
             document.querySelector('.glass-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        function handleFormSubmit() {
+        function handleFormSubmit(event) {
+            event.preventDefault(); // מונע ריענון של העמוד
             window.submitted = true;
             
-            const btn = document.querySelector('button[type="submit"]');
+            const btn = document.getElementById('submit-btn');
+            const originalContent = btn.innerHTML;
+            
             btn.innerHTML = `
                 <svg class="animate-spin -ml-1 mr-3 h-6 w-6 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -815,6 +815,23 @@
             `;
             btn.disabled = true;
             btn.classList.add('opacity-75', 'cursor-not-allowed');
+
+            const form = document.getElementById('ai-nursing-form');
+            const formData = new FormData(form);
+
+            // שליחת הנתונים ישירות ל-Google Forms
+            fetch("https://docs.google.com/forms/d/e/1FAIpQLSdnBVGIL2YkvHV_wYRX4UZbO9UgZuTfpjVc4E_XC_L8ba-QpA/formResponse", {
+                method: "POST",
+                mode: "no-cors", // חובה כדי לעקוף חסימות אבטחה של גוגל
+                body: formData
+            }).then(() => {
+                showSuccess();
+            }).catch((error) => {
+                console.error("Error:", error);
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+                btn.classList.remove('opacity-75', 'cursor-not-allowed');
+            });
         }
 
         function showSuccess() {
