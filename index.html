@@ -254,8 +254,11 @@
                 </div>
             </div>
 
-            <!-- Form Start -->
-            <form id="ai-nursing-form" onsubmit="handleFormSubmit(event)">
+            <!-- הוספת Iframe נסתר לקבלת התשובה מגוגל מבלי לעזוב את הדף -->
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(window.submitted) { showSuccess(); }"></iframe>
+
+            <!-- Form Start - עודכן לשליחה טבעית למסגרת הנסתרת -->
+            <form id="ai-nursing-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdnBVGIL2YkvHV_wYRX4UZbO9UgZuTfpjVc4E_XC_L8ba-QpA/formResponse" method="POST" target="hidden_iframe" onsubmit="handleFormSubmit(event)">
 
                 <!-- STEP 1: Personal Details -->
                 <div id="step-1" class="step-container active">
@@ -800,11 +803,10 @@
         }
 
         function handleFormSubmit(event) {
-            event.preventDefault(); // מונע ריענון של העמוד
+            // שימו לב: אין כאן event.preventDefault() כי אנחנו רוצים שהדפדפן ישלח את הטופס
             window.submitted = true;
             
             const btn = document.getElementById('submit-btn');
-            const originalContent = btn.innerHTML;
             
             btn.innerHTML = `
                 <svg class="animate-spin -ml-1 mr-3 h-6 w-6 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -815,23 +817,8 @@
             `;
             btn.disabled = true;
             btn.classList.add('opacity-75', 'cursor-not-allowed');
-
-            const form = document.getElementById('ai-nursing-form');
-            const formData = new FormData(form);
-
-            // שליחת הנתונים ישירות ל-Google Forms
-            fetch("https://docs.google.com/forms/d/e/1FAIpQLSdnBVGIL2YkvHV_wYRX4UZbO9UgZuTfpjVc4E_XC_L8ba-QpA/formResponse", {
-                method: "POST",
-                mode: "no-cors", // חובה כדי לעקוף חסימות אבטחה של גוגל
-                body: formData
-            }).then(() => {
-                showSuccess();
-            }).catch((error) => {
-                console.error("Error:", error);
-                btn.innerHTML = originalContent;
-                btn.disabled = false;
-                btn.classList.remove('opacity-75', 'cursor-not-allowed');
-            });
+            
+            // הפונקציה showSuccess תיקרא אוטומטית ברגע שה-iframe הנסתר יסיים להיטען
         }
 
         function showSuccess() {
