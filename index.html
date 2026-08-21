@@ -905,8 +905,8 @@
                 searchParams.append(pair[0], pair[1]);
             }
 
-            // יצירת הקישור המלא הממלא מראש את טופס הגוגל
-            const baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdnFAIpQLSdnBVGIL2YkvHV_wYRX4UZbO9UgZuTfpjVc4E_XC_L8ba-QpA/viewform';
+            // הכתובת המתוקנת! ללא כפילויות.
+            const baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdnBVGIL2YkvHV_wYRX4UZbO9UgZuTfpjVc4E_XC_L8ba-QpA/viewform';
             const fullUrl = `${baseUrl}?usp=pp_url&${searchParams.toString()}`;
 
             // העברת המשתמש לטופס הגוגל עם הנתונים
