@@ -769,9 +769,10 @@
 
                     <div class="flex justify-between mt-10 pt-6 border-t border-metal-700">
                         <button type="button" onclick="nextStep(5)" class="px-6 py-3 rounded-xl text-slate-400 hover:text-white transition-colors">חזור</button>
+                        <!-- SUBMIT BUTTON -->
                         <button type="submit" id="submit-btn" class="btn-orange px-10 py-4 rounded-xl font-bold flex items-center gap-3 text-xl">
                             <span>שליחת שאלון סופית</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                             </svg>
                         </button>
@@ -780,6 +781,7 @@
 
             </form>
             
+            <!-- Success Message (Hidden initially) -->
             <div id="success-message" class="hidden text-center py-16 animate-slide-up">
                 <div class="w-24 h-24 bg-gradient-to-br from-[#10B981] to-[#047857] rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_40px_rgba(16,185,129,0.4)] border-4 border-metal-800">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" class="text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -812,17 +814,25 @@
         const totalSteps = 6;
 
         function nextStep(step) {
+            // Hide current
             document.getElementById(`step-${currentStep}`).classList.remove('active');
+            
+            // Update step
             currentStep = step;
+            
+            // Show new
             document.getElementById(`step-${currentStep}`).classList.add('active');
             
+            // Update Progress Bar
             const progress = (currentStep / totalSteps) * 100;
             document.getElementById('progress-bar').style.width = `${progress}%`;
             
+            // Scroll smoothly to top of the form panel
             document.querySelector('.glass-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function showSuccess() {
+            // מסתיר את הטופס ומציג את ההודעה הירוקה
             document.getElementById('ai-nursing-form').style.display = 'none';
             document.getElementById('progress-section').style.display = 'none'; 
             document.getElementById('success-message').classList.remove('hidden');
@@ -830,40 +840,58 @@
         }
 
         function resetForm() {
+            // איפוס לבדיקות
             document.getElementById('ai-nursing-form').reset();
             document.getElementById('success-message').classList.add('hidden');
             document.getElementById('error-message').classList.add('hidden');
             document.getElementById('ai-nursing-form').style.display = 'block';
             document.getElementById('progress-section').style.display = 'block';
+            
             nextStep(1); 
         }
 
+        // Fetch API Submission Logic
         document.getElementById('ai-nursing-form').addEventListener('submit', function(e) {
             e.preventDefault(); 
             
             const form = this;
             const url = form.action;
-            const formData = new FormData(form);
             const submitBtn = document.getElementById('submit-btn');
             const originalBtnContent = submitBtn.innerHTML;
             const errorMsg = document.getElementById('error-message');
 
+            // --- CRITICAL FIX: URL Encoded Form Data for Google Forms ---
+            // Fetch with no-cors strips body if it's FormData. We must encode it as URL parameters.
+            const formData = new FormData(form);
+            const urlSearchParams = new URLSearchParams();
+            for (const pair of formData.entries()) {
+                urlSearchParams.append(pair[0], pair[1]);
+            }
+            // ------------------------------------------------------------
+
+            // UI Loading state
             errorMsg.classList.add('hidden');
             submitBtn.innerHTML = '<span class="animate-pulse font-bold text-xl">שולח נתונים...</span>';
             submitBtn.disabled = true;
             submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
 
+            // Execute fetch request
             fetch(url, {
                 method: 'POST',
-                mode: 'no-cors',
-                body: formData
+                mode: 'no-cors', // Bypasses CORS policy
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: urlSearchParams.toString() // Send the encoded string, not the FormData object
             }).then(() => {
+                // Success! show confirmation
                 showSuccess();
                 submitBtn.innerHTML = originalBtnContent; 
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
             }).catch((error) => {
                 console.error('Submission failed:', error);
+                // Show Error
                 errorMsg.classList.remove('hidden');
                 submitBtn.innerHTML = originalBtnContent;
                 submitBtn.disabled = false;
