@@ -222,8 +222,7 @@
     </header>
 
     <main class="max-w-4xl mx-auto px-4 relative z-10">
-        <div class="glass-panel rounded-3xl p-6 md:p-10 mb-10">
-            
+            <!-- Progress Bar -->
             <div class="mb-10" id="progress-section">
                 <div class="flex justify-between text-[10px] md:text-xs text-slate-400 mb-2 font-bold px-1">
                     <span class="text-orange-accent">פרטים</span>
@@ -238,7 +237,11 @@
                 </div>
             </div>
 
-            <form id="ai-nursing-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdnBVGIL2YkvHV_wYRX4UZbO9UgZuTfpjVc4E_XC_L8ba-QpA/formResponse" method="POST">
+            <!-- Iframe נסתר לשליחת הטופס מבלי לעזוב את הדף -->
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+            <!-- Form Start -->
+            <form id="ai-nursing-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdnBVGIL2YkvHV_wYRX4UZbO9UgZuTfpjVc4E_XC_L8ba-QpA/formResponse" method="POST" target="hidden_iframe">
 
                 <div id="step-1" class="step-container active">
                     <h2 class="text-2xl font-display font-bold text-white mb-6 border-b border-metal-700 pb-3 flex items-center gap-2">
@@ -812,6 +815,7 @@
     <script>
         let currentStep = 1;
         const totalSteps = 6;
+        window.submitted = false;
 
         function nextStep(step) {
             // Hide current
@@ -843,59 +847,45 @@
             // איפוס לבדיקות
             document.getElementById('ai-nursing-form').reset();
             document.getElementById('success-message').classList.add('hidden');
-            document.getElementById('error-message').classList.add('hidden');
             document.getElementById('ai-nursing-form').style.display = 'block';
             document.getElementById('progress-section').style.display = 'block';
             
+            window.submitted = false;
+            
+            // Reset submit button state
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.innerHTML = `
+                <span>שליחת שאלון סופית</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+            `;
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+
             nextStep(1); 
         }
-
-        // Fetch API Submission Logic
-        document.getElementById('ai-nursing-form').addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            
-            const form = this;
-            const url = form.action;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('ai-nursing-form');
+            const iframe = document.getElementById('hidden_iframe');
             const submitBtn = document.getElementById('submit-btn');
-            const originalBtnContent = submitBtn.innerHTML;
-            const errorMsg = document.getElementById('error-message');
 
-            // --- CRITICAL FIX: URL Encoded Form Data for Google Forms ---
-            // Fetch with no-cors strips body if it's FormData. We must encode it as URL parameters.
-            const formData = new FormData(form);
-            const urlSearchParams = new URLSearchParams();
-            for (const pair of formData.entries()) {
-                urlSearchParams.append(pair[0], pair[1]);
-            }
-            // ------------------------------------------------------------
+            // Listen for form submission
+            form.addEventListener('submit', function() {
+                window.submitted = true;
+                
+                // Show loading state on button
+                submitBtn.innerHTML = '<span class="animate-pulse font-bold text-xl">שולח נתונים...</span>';
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            });
 
-            // UI Loading state
-            errorMsg.classList.add('hidden');
-            submitBtn.innerHTML = '<span class="animate-pulse font-bold text-xl">שולח נתונים...</span>';
-            submitBtn.disabled = true;
-            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
-
-            // Execute fetch request
-            fetch(url, {
-                method: 'POST',
-                mode: 'no-cors', // Bypasses CORS policy
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: urlSearchParams.toString() // Send the encoded string, not the FormData object
-            }).then(() => {
-                // Success! show confirmation
-                showSuccess();
-                submitBtn.innerHTML = originalBtnContent; 
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
-            }).catch((error) => {
-                console.error('Submission failed:', error);
-                // Show Error
-                errorMsg.classList.remove('hidden');
-                submitBtn.innerHTML = originalBtnContent;
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+            // Listen for iframe load event to confirm submission
+            iframe.addEventListener('load', function() {
+                if (window.submitted) {
+                    showSuccess();
+                }
             });
         });
     </script>
