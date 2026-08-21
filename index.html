@@ -996,15 +996,15 @@
                         }
                     }
 
+                    // התיקון הקריטי: במקום לשים את הנתונים ב-body (שנחסם), נשרשר אותם ישירות לכתובת ה-URL
+                    const finalUrl = GOOGLE_FORM_ACTION_URL + '?' + googleFormParams.toString();
+
                     try {
                         // שליחת הנתונים כבקשת POST מאחורי הקלעים באמצעות fetch
-                        await fetch(GOOGLE_FORM_ACTION_URL, {
+                        await fetch(finalUrl, {
                             method: 'POST',
-                            mode: 'no-cors', // קריטי כדי שגוגל לא יחסום אותנו בגלל שגיאות CORS
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded' // קריטי כדי שגוגל יבין את הנתונים בגוף הבקשה
-                            },
-                            body: googleFormParams.toString() // המרת הנתונים למחרוזת
+                            mode: 'no-cors' // קריטי כדי שגוגל לא יחסום אותנו בגלל שגיאות CORS
+                            // הסרנו את ה-headers וה-body כי המידע עכשיו נמצא בתוך ה-URL
                         });
 
                         // אם הגענו לכאן (ובזכות no-cors כמעט תמיד נגיע), נניח שהשליחה הצליחה
