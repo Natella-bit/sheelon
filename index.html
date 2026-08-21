@@ -7,7 +7,6 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +22,7 @@
                     },
                     colors: {
                         metal: {
-                            900: '#0B1121',
+                            900: '#0B1121', // כחול-שחור עמוק
                             800: '#131C31',
                             700: '#1E293B',
                             600: '#334155',
@@ -36,6 +35,7 @@
                     animation: {
                         'slide-up': 'slideUp 0.4s ease-out forwards',
                         'bounce-x': 'bounceX 1.5s infinite',
+                        'float': 'float 6s ease-in-out infinite',
                     },
                     keyframes: {
                         slideUp: {
@@ -45,6 +45,10 @@
                         bounceX: {
                             '0%, 100%': { transform: 'translateX(0)' },
                             '50%': { transform: 'translateX(-25%)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
                         }
                     }
                 }
@@ -54,6 +58,7 @@
 
     <style>
         body {
+            /* Metallic Blue Background */
             background-color: #0B1121;
             background-image: 
                 radial-gradient(circle at 15% 50%, rgba(30, 41, 59, 0.6), transparent 25%),
@@ -63,6 +68,7 @@
             overflow-x: hidden;
         }
 
+        /* Glassmorphism Metallic Panel */
         .glass-panel {
             background: linear-gradient(145deg, rgba(19, 28, 49, 0.9) 0%, rgba(11, 17, 33, 0.95) 100%);
             border: 1px solid rgba(51, 65, 85, 0.5);
@@ -72,6 +78,7 @@
             backdrop-filter: blur(10px);
         }
 
+        /* Interactive Grid Pattern */
         .bg-grid {
             background-size: 40px 40px;
             background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
@@ -82,6 +89,7 @@
             z-index: -1;
         }
 
+        /* Form Inputs (Textareas) */
         .metallic-input {
             background: #0f172a;
             border: 1px solid #334155;
@@ -89,13 +97,13 @@
             transition: all 0.3s ease;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
         }
-        
         .metallic-input:focus {
             border-color: #FF7A00;
             box-shadow: 0 0 0 2px rgba(255, 122, 0, 0.2), inset 0 2px 4px rgba(0,0,0,0.5);
             outline: none;
         }
 
+        /* Custom Radio & Checkbox Tiles */
         .tile-label {
             background: #1e293b;
             border: 1px solid #334155;
@@ -103,19 +111,28 @@
             position: relative;
             overflow: hidden;
         }
-        
         .tile-label:hover {
             border-color: #475569;
             transform: translateY(-2px);
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
-
+        
         @keyframes pulseSelected {
-            0% { box-shadow: 0 0 10px rgba(255, 122, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1); border-color: rgba(255, 122, 0, 0.6); }
-            50% { box-shadow: 0 0 25px rgba(255, 122, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.3); border-color: rgba(255, 122, 0, 1); }
-            100% { box-shadow: 0 0 10px rgba(255, 122, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1); border-color: rgba(255, 122, 0, 0.6); }
+            0% { 
+                box-shadow: 0 0 10px rgba(255, 122, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+                border-color: rgba(255, 122, 0, 0.6);
+            }
+            50% { 
+                box-shadow: 0 0 25px rgba(255, 122, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+                border-color: rgba(255, 122, 0, 1);
+            }
+            100% { 
+                box-shadow: 0 0 10px rgba(255, 122, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+                border-color: rgba(255, 122, 0, 0.6);
+            }
         }
 
+        /* הפעלת העיצוב הכתום והפועם על הכרטיסייה כאשר היא מסומנת */
         .tile-label:has(input:checked) {
             background: linear-gradient(135deg, rgba(255, 122, 0, 0.25) 0%, rgba(255, 122, 0, 0.05) 100%);
             border-color: #FF7A00;
@@ -124,13 +141,15 @@
             z-index: 10;
         }
 
+        /* הדגשת הטקסט בתוך הכרטיסייה שנבחרה */
         .tile-label:has(input:checked), 
         .tile-label:has(input:checked) span {
             color: #ffffff !important;
             text-shadow: 0 0 8px rgba(255, 122, 0, 0.8);
             font-weight: bold;
         }
-
+        
+        /* The Orange Glowing Button */
         .btn-orange {
             background: linear-gradient(135deg, #FF9A3D 0%, #FF7A00 100%);
             border: 1px solid #FFAD66;
@@ -139,24 +158,29 @@
             transition: all 0.3s ease;
             text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
-        
         .btn-orange:hover {
             transform: translateY(-3px) scale(1.02);
             box-shadow: 0 8px 25px rgba(255, 122, 0, 0.6), inset 0 1px 1px rgba(255,255,255,0.5);
         }
-        
         .btn-orange:active {
             transform: translateY(1px);
         }
+        .btn-orange:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            animation: none;
+        }
 
+        /* Likert Scale Specific */
         .likert-table th, .likert-table td {
             padding: 12px;
             text-align: center;
             border-bottom: 1px solid #1e293b;
         }
-        
         .likert-table tr:hover { background: rgba(255, 255, 255, 0.02); }
         
+        /* צביעת כפתורי הרדיו בטבלה לכתום */
         .likert-table input[type="radio"], input[type="radio"].scale-radio {
             accent-color: #FF7A00;
             cursor: pointer;
@@ -164,19 +188,20 @@
             height: 1.25rem;
             transition: all 0.2s;
         }
-        
         .likert-table input[type="radio"]:hover, input[type="radio"].scale-radio:hover {
             transform: scale(1.2);
             box-shadow: 0 0 10px rgba(255, 122, 0, 0.5);
             border-radius: 50%;
         }
 
+        /* Step Logic */
         .step-container { display: none; }
         .step-container.active {
             display: block;
             animation: slideUp 0.4s ease-out forwards;
         }
 
+        /* Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #0B1121; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
@@ -186,6 +211,7 @@
         svg {
             max-width: 100%;
             height: auto;
+            width: 24px;
         }
     </style>
 </head>
@@ -199,10 +225,12 @@
     </div>
     
     <header class="pt-10 pb-6 px-4 text-center relative z-10">
+        <!-- Main Title -->
         <h1 class="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-slate-400" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">
             בינה מלאכותית <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-accent" style="text-shadow: 0 0 25px rgba(255,122,0,0.4);">באחיות</span>
         </h1>
         
+        <!-- Intro Message Panel -->
         <div class="glass-panel max-w-3xl mx-auto text-lg leading-relaxed p-6 md:p-8 rounded-2xl text-right relative overflow-hidden">
             <p class="font-bold text-white text-xl mb-3">צוות יקר,</p>
             <p class="text-slate-300 mb-2">לקראת הכשרה בנושא שימוש בבינה מלאכותית בעבודת האחות, נשמח ללמוד על רמת ההיכרות שלכם עם התחום, הצרכים המקצועיים, הציפיות והחששות שלכם.</p>
@@ -210,7 +238,7 @@
             
             <div class="pt-4 border-t border-slate-700/50 flex items-start gap-3">
                 <div class="mt-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="text-orange-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="text-orange-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </div>
@@ -222,6 +250,8 @@
     </header>
 
     <main class="max-w-4xl mx-auto px-4 relative z-10">
+        <div class="glass-panel rounded-3xl p-6 md:p-10 mb-10">
+            
             <!-- Progress Bar -->
             <div class="mb-10" id="progress-section">
                 <div class="flex justify-between text-[10px] md:text-xs text-slate-400 mb-2 font-bold px-1">
@@ -238,335 +268,353 @@
             </div>
 
             <!-- Form Start -->
-            <form id="ai-nursing-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdnBVGIL2YkvHV_wYRX4UZbO9UgZuTfpjVc4E_XC_L8ba-QpA/formResponse" method="POST">
+            <form id="ai-nursing-form">
 
                 <div id="step-1" class="step-container active">
                     <h2 class="text-2xl font-display font-bold text-white mb-6 border-b border-metal-700 pb-3 flex items-center gap-2">
                         <span class="text-orange-accent">01.</span> מידע כללי
                     </h2>
                     
+                    <!-- Age -->
                     <div class="mb-8">
                         <label class="block text-slate-200 mb-3 font-medium">מהו גילך?</label>
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.737270739" value="עד 25" class="hidden custom-radio"><span>עד 25</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.737270739" value="26–35" class="hidden custom-radio"><span>26–35</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.737270739" value="36–45" class="hidden custom-radio"><span>36–45</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.737270739" value="46–55" class="hidden custom-radio"><span>46–55</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.737270739" value="56 ומעלה" class="hidden custom-radio"><span>56 ומעלה</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.737270739" value="מעדיפה לא להשיב" class="hidden custom-radio"><span>מעדיפה לא להשיב</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="age_group" value="עד 25" class="hidden custom-radio"><span>עד 25</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="age_group" value="26–35" class="hidden custom-radio"><span>26–35</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="age_group" value="36–45" class="hidden custom-radio"><span>36–45</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="age_group" value="46–55" class="hidden custom-radio"><span>46–55</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="age_group" value="56 ומעלה" class="hidden custom-radio"><span>56 ומעלה</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="age_group" value="מעדיפה לא להשיב" class="hidden custom-radio"><span>מעדיפה לא להשיב</span></label>
                         </div>
                     </div>
 
+                    <!-- Gender -->
                     <div class="mb-8">
                         <label class="block text-slate-200 mb-3 font-medium">כיצד את/ה מגדיר/ה את עצמך?</label>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.589549655" value="אישה" class="hidden custom-radio"><span>אישה</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.589549655" value="גבר" class="hidden custom-radio"><span>גבר</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.589549655" value="אחר" class="hidden custom-radio"><span>אחר</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.589549655" value="מעדיף/ה לא להשיב" class="hidden custom-radio"><span>מעדיף/ה לא להשיב</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="gender" value="אישה" class="hidden custom-radio"><span>אישה</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="gender" value="גבר" class="hidden custom-radio"><span>גבר</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="gender" value="אחר" class="hidden custom-radio"><span>אחר</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="gender" value="מעדיף/ה לא להשיב" class="hidden custom-radio"><span>מעדיף/ה לא להשיב</span></label>
                         </div>
                     </div>
 
+                    <!-- Education -->
                     <div class="mb-8">
                         <label class="block text-slate-200 mb-3 font-medium">מהי השכלתך המקצועית הגבוהה ביותר?</label>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.838715345" value="אחות מוסמכת ללא תואר אקדמי" class="hidden custom-radio"><span>אחות מוסמכת ללא תואר אקדמי</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.838715345" value="תואר ראשון" class="hidden custom-radio"><span>תואר ראשון</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.838715345" value="תואר שני" class="hidden custom-radio"><span>תואר שני</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.838715345" value="תואר שלישי" class="hidden custom-radio"><span>תואר שלישי</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.838715345" value="לימודי מומחיות קלינית" class="hidden custom-radio"><span>לימודי מומחיות קלינית</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.838715345" value="לימודי על־בסיסי" class="hidden custom-radio"><span>לימודי על־בסיסי</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.838715345" value="אחר" class="hidden custom-radio"><span>אחר</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.838715345" value="מעדיף/ה לא להשיב" class="hidden custom-radio"><span>מעדיף/ה לא להשיב</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="education" value="אחות מוסמכת ללא תואר אקדמי" class="hidden custom-radio"><span>אחות מוסמכת ללא תואר אקדמי</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="education" value="תואר ראשון" class="hidden custom-radio"><span>תואר ראשון</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="education" value="תואר שני" class="hidden custom-radio"><span>תואר שני</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="education" value="תואר שלישי" class="hidden custom-radio"><span>תואר שלישי</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="education" value="לימודי מומחיות קלינית" class="hidden custom-radio"><span>לימודי מומחיות קלינית</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="education" value="לימודי על־בסיסי" class="hidden custom-radio"><span>לימודי על־בסיסי</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="education" value="אחר" class="hidden custom-radio"><span>אחר</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="education" value="מעדיף/ה לא להשיב" class="hidden custom-radio"><span>מעדיף/ה לא להשיב</span></label>
                         </div>
                     </div>
 
+                    <!-- Role -->
                     <div class="mb-8">
                         <label class="block text-slate-200 mb-3 font-medium">מהו תפקידך הנוכחי?</label>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.1129218118" value="אחות מוסמכת" class="hidden custom-radio"><span>אחות מוסמכת</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.1129218118" value="אחראית משמרת" class="hidden custom-radio"><span>אחראית משמרת</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.1129218118" value="סגנית אחות אחראית" class="hidden custom-radio"><span>סגנית אחות אחראית</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.1129218118" value="אחות אחראית מחלקה או יחידה" class="hidden custom-radio"><span>אחות אחראית מחלקה או יחידה</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.1129218118" value="אחות מומחית קלינית" class="hidden custom-radio"><span>אחות מומחית קלינית</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.1129218118" value="אחות מרכזת תחום" class="hidden custom-radio"><span>אחות מרכזת תחום</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.1129218118" value="מדריכה קלינית" class="hidden custom-radio"><span>מדריכה קלינית</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.1129218118" value="תפקיד ניהולי" class="hidden custom-radio"><span>תפקיד ניהולי</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.1129218118" value="סטודנטית לסיעוד" class="hidden custom-radio"><span>סטודנטית לסיעוד</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.1129218118" value="אחר" class="hidden custom-radio"><span>אחר</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="role" value="אחות מוסמכת" class="hidden custom-radio"><span>אחות מוסמכת</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="role" value="אחראית משמרת" class="hidden custom-radio"><span>אחראית משמרת</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="role" value="סגנית אחות אחראית" class="hidden custom-radio"><span>סגנית אחות אחראית</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="role" value="אחות אחראית מחלקה או יחידה" class="hidden custom-radio"><span>אחות אחראית מחלקה או יחידה</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="role" value="אחות מומחית קלינית" class="hidden custom-radio"><span>אחות מומחית קלינית</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="role" value="אחות מרכזת תחום" class="hidden custom-radio"><span>אחות מרכזת תחום</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="role" value="מדריכה קלינית" class="hidden custom-radio"><span>מדריכה קלינית</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="role" value="תפקיד ניהולי" class="hidden custom-radio"><span>תפקיד ניהולי</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="role" value="סטודנטית לסיעוד" class="hidden custom-radio"><span>סטודנטית לסיעוד</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="role" value="אחר" class="hidden custom-radio"><span>אחר</span></label>
                         </div>
                     </div>
 
+                    <!-- Experience Years -->
                     <div class="mb-8">
                         <label class="block text-slate-200 mb-3 font-medium">כמה שנות ניסיון מקצועי יש לך באחיות?</label>
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.1435252496" value="פחות משנה" class="hidden custom-radio"><span>פחות משנה</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.1435252496" value="1–5 שנים" class="hidden custom-radio"><span>1–5 שנים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.1435252496" value="6–10 שנים" class="hidden custom-radio"><span>6–10 שנים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.1435252496" value="11–20 שנים" class="hidden custom-radio"><span>11–20 שנים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.1435252496" value="21–30 שנים" class="hidden custom-radio"><span>21–30 שנים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.1435252496" value="מעל 30 שנים" class="hidden custom-radio"><span>מעל 30 שנים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="experience" value="פחות משנה" class="hidden custom-radio"><span>פחות משנה</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="experience" value="1–5 שנים" class="hidden custom-radio"><span>1–5 שנים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="experience" value="6–10 שנים" class="hidden custom-radio"><span>6–10 שנים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="experience" value="11–20 שנים" class="hidden custom-radio"><span>11–20 שנים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="experience" value="21–30 שנים" class="hidden custom-radio"><span>21–30 שנים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="experience" value="מעל 30 שנים" class="hidden custom-radio"><span>מעל 30 שנים</span></label>
                         </div>
                     </div>
 
+                    <!-- Workplace -->
                     <div class="mb-8">
                         <label class="block text-slate-200 mb-3 font-medium">מהו מקום עבודתך העיקרי?</label>
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="מחלקה פנימית" class="hidden custom-radio"><span class="text-slate-300 text-sm">מחלקה פנימית</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="מחלקה כירורגית" class="hidden custom-radio"><span class="text-slate-300 text-sm">מחלקה כירורגית</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="טיפול נמרץ כללי" class="hidden custom-radio"><span class="text-slate-300 text-sm">טיפול נמרץ כללי</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="טיפול נמרץ לב" class="hidden custom-radio"><span class="text-slate-300 text-sm">טיפול נמרץ לב</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="טיפול נמרץ ילדים" class="hidden custom-radio"><span class="text-slate-300 text-sm">טיפול נמרץ ילדים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="טיפול נמרץ ילודים ופגים" class="hidden custom-radio"><span class="text-slate-300 text-xs">טיפול נמרץ ילודים ופגים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="מיון מבוגרים" class="hidden custom-radio"><span class="text-slate-300 text-sm">מיון מבוגרים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="מיון ילדים" class="hidden custom-radio"><span class="text-slate-300 text-sm">מיון ילדים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="חדר ניתוח" class="hidden custom-radio"><span class="text-slate-300 text-sm">חדר ניתוח</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="התאוששות" class="hidden custom-radio"><span class="text-slate-300 text-sm">התאוששות</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="נשים" class="hidden custom-radio"><span class="text-slate-300 text-sm">נשים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="יולדות" class="hidden custom-radio"><span class="text-slate-300 text-sm">יולדות</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="חדר לידה" class="hidden custom-radio"><span class="text-slate-300 text-sm">חדר לידה</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="ילדים" class="hidden custom-radio"><span class="text-slate-300 text-sm">ילדים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="ילודים" class="hidden custom-radio"><span class="text-slate-300 text-sm">ילודים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="פסיכיאטריה" class="hidden custom-radio"><span class="text-slate-300 text-sm">פסיכיאטריה</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="מרפאות חוץ" class="hidden custom-radio"><span class="text-slate-300 text-sm">מרפאות חוץ</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="מכון או יחידה טיפולית" class="hidden custom-radio"><span class="text-slate-300 text-sm">מכון או יחידה טיפולית</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="הנהלת האחיות" class="hidden custom-radio"><span class="text-slate-300 text-sm">הנהלת האחיות</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="entry.1127049248" value="אחר" class="hidden custom-radio"><span class="text-slate-300 text-sm">אחר</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="מחלקה פנימית" class="hidden custom-radio"><span class="text-slate-300 text-sm">מחלקה פנימית</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="מחלקה כירורגית" class="hidden custom-radio"><span class="text-slate-300 text-sm">מחלקה כירורגית</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="טיפול נמרץ כללי" class="hidden custom-radio"><span class="text-slate-300 text-sm">טיפול נמרץ כללי</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="טיפול נמרץ לב" class="hidden custom-radio"><span class="text-slate-300 text-sm">טיפול נמרץ לב</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="טיפול נמרץ ילדים" class="hidden custom-radio"><span class="text-slate-300 text-sm">טיפול נמרץ ילדים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="טיפול נמרץ ילודים ופגים" class="hidden custom-radio"><span class="text-slate-300 text-xs">טיפול נמרץ ילודים ופגים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="מיון מבוגרים" class="hidden custom-radio"><span class="text-slate-300 text-sm">מיון מבוגרים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="מיון ילדים" class="hidden custom-radio"><span class="text-slate-300 text-sm">מיון ילדים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="חדר ניתוח" class="hidden custom-radio"><span class="text-slate-300 text-sm">חדר ניתוח</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="התאוששות" class="hidden custom-radio"><span class="text-slate-300 text-sm">התאוששות</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="נשים" class="hidden custom-radio"><span class="text-slate-300 text-sm">נשים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="יולדות" class="hidden custom-radio"><span class="text-slate-300 text-sm">יולדות</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="חדר לידה" class="hidden custom-radio"><span class="text-slate-300 text-sm">חדר לידה</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="ילדים" class="hidden custom-radio"><span class="text-slate-300 text-sm">ילדים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="ילודים" class="hidden custom-radio"><span class="text-slate-300 text-sm">ילודים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="פסיכיאטריה" class="hidden custom-radio"><span class="text-slate-300 text-sm">פסיכיאטריה</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="מרפאות חוץ" class="hidden custom-radio"><span class="text-slate-300 text-sm">מרפאות חוץ</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="מכון או יחידה טיפולית" class="hidden custom-radio"><span class="text-slate-300 text-sm">מכון או יחידה טיפולית</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="הנהלת האחיות" class="hidden custom-radio"><span class="text-slate-300 text-sm">הנהלת האחיות</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-2"><input type="radio" name="workplace" value="אחר" class="hidden custom-radio"><span class="text-slate-300 text-sm">אחר</span></label>
                         </div>
                     </div>
 
+                    <!-- Job Percentage -->
                     <div class="mb-8">
                         <label class="block text-slate-200 mb-3 font-medium">באיזה היקף משרה את/ה עובד/ת?</label>
                         <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.110079847" value="פחות מ-50%" class="hidden custom-radio"><span>פחות מ-50%</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.110079847" value="50%–74%" class="hidden custom-radio"><span>50%–74%</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.110079847" value="75%–99%" class="hidden custom-radio"><span>75%–99%</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.110079847" value="100%" class="hidden custom-radio"><span>100%</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="entry.110079847" value="אחר" class="hidden custom-radio"><span>אחר</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="job_percentage" value="פחות מ-50%" class="hidden custom-radio"><span>פחות מ-50%</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="job_percentage" value="50%–74%" class="hidden custom-radio"><span>50%–74%</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="job_percentage" value="75%–99%" class="hidden custom-radio"><span>75%–99%</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="job_percentage" value="100%" class="hidden custom-radio"><span>100%</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300 text-sm flex items-center gap-3"><input type="radio" name="job_percentage" value="אחר" class="hidden custom-radio"><span>אחר</span></label>
                         </div>
                     </div>
 
+                    <!-- Tasks (Radio) -->
                     <div class="mb-8">
                         <label class="block text-slate-200 mb-3 font-medium">האם במסגרת תפקידך את/ה עוסק/ת באחד מהתחומים הבאים?</label>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="entry.1953469363" value="הדרכת מטופלים" class="hidden custom-radio"><span class="text-slate-300 text-sm">הדרכת מטופלים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="entry.1953469363" value="הדרכת צוותים" class="hidden custom-radio"><span class="text-slate-300 text-sm">הדרכת צוותים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="entry.1953469363" value="ניהול צוות" class="hidden custom-radio"><span class="text-slate-300 text-sm">ניהול צוות</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="entry.1953469363" value="איכות ובטיחות" class="hidden custom-radio"><span class="text-slate-300 text-sm">איכות ובטיחות</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="entry.1953469363" value="מחקר" class="hidden custom-radio"><span class="text-slate-300 text-sm">מחקר</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="entry.1953469363" value="כתיבת נהלים" class="hidden custom-radio"><span class="text-slate-300 text-sm">כתיבת נהלים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="entry.1953469363" value="הכנת מצגות או חומרי למידה" class="hidden custom-radio"><span class="text-slate-300 text-sm">הכנת מצגות או חומרי למידה</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="entry.1953469363" value="ניתוח נתונים" class="hidden custom-radio"><span class="text-slate-300 text-sm">ניתוח נתונים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="entry.1953469363" value="עבודה קלינית ישירה" class="hidden custom-radio"><span class="text-slate-300 text-sm">עבודה קלינית ישירה</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="entry.1953469363" value="אחר" class="hidden custom-radio"><span class="text-slate-300 text-sm">אחר</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="tasks" value="הדרכת מטופלים" class="hidden custom-radio"><span class="text-slate-300 text-sm">הדרכת מטופלים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="tasks" value="הדרכת צוותים" class="hidden custom-radio"><span class="text-slate-300 text-sm">הדרכת צוותים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="tasks" value="ניהול צוות" class="hidden custom-radio"><span class="text-slate-300 text-sm">ניהול צוות</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="tasks" value="איכות ובטיחות" class="hidden custom-radio"><span class="text-slate-300 text-sm">איכות ובטיחות</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="tasks" value="מחקר" class="hidden custom-radio"><span class="text-slate-300 text-sm">מחקר</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="tasks" value="כתיבת נהלים" class="hidden custom-radio"><span class="text-slate-300 text-sm">כתיבת נהלים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="tasks" value="הכנת מצגות או חומרי למידה" class="hidden custom-radio"><span class="text-slate-300 text-sm">הכנת מצגות או חומרי למידה</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="tasks" value="ניתוח נתונים" class="hidden custom-radio"><span class="text-slate-300 text-sm">ניתוח נתונים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="tasks" value="עבודה קלינית ישירה" class="hidden custom-radio"><span class="text-slate-300 text-sm">עבודה קלינית ישירה</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="radio" name="tasks" value="אחר" class="hidden custom-radio"><span class="text-slate-300 text-sm">אחר</span></label>
                         </div>
                     </div>
 
                     <div class="flex justify-end mt-8">
                         <button type="button" onclick="nextStep(2)" class="btn-orange px-8 py-3 rounded-xl font-bold flex items-center gap-2 text-lg">
-                            המשך <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                            המשך <svg xmlns="http://www.w3.org/2000/svg" class="animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                         </button>
                     </div>
                 </div>
 
                 <div id="step-2" class="step-container">
                     <h2 class="text-2xl font-display font-bold text-white mb-6 border-b border-metal-700 pb-3 flex items-center gap-2">
-                        <span class="text-orange-accent">02.</span> ניסיון בשימוש בבינה מלאכותית
+                        <span class="text-orange-accent">02.</span> חלק ב' - ניסיון בשימוש בבינה מלאכותית
                     </h2>
 
-                    <!-- 1-5 scale (1 on left visually using LTR direction inside container) -->
+                    <!-- Digital Tools Control Scale -->
                     <div class="bg-metal-800 rounded-xl p-6 border border-metal-700 mb-8 shadow-inner">
                         <label class="block text-slate-200 mb-6 font-medium text-center md:text-lg">כיצד היית מגדיר/ה את רמת השליטה שלך בכלים דיגיטליים?</label>
-                        <div class="flex justify-between items-center w-full max-w-lg mx-auto" dir="ltr">
-                            <span class="text-slate-400 text-xs md:text-sm font-medium w-16 text-right" dir="rtl">נמוכה מאוד</span>
-                            <div class="flex flex-row gap-4 md:gap-8 z-10" dir="ltr">
+                        <div class="flex justify-between items-center max-w-lg mx-auto relative px-2" dir="ltr">
+                            <span class="text-slate-400 text-xs md:text-sm font-medium w-16 md:w-20 text-right" dir="rtl">נמוכה מאוד</span>
+                            <div class="flex flex-row gap-4 md:gap-8 z-10">
                                 <label class="flex flex-col items-center gap-2 cursor-pointer group">
-                                    <input type="radio" name="entry.1994711284" value="1" class="scale-radio w-6 h-6">
+                                    <input type="radio" name="digital_skills" value="1" class="scale-radio w-6 h-6">
                                     <span class="text-slate-300 font-bold group-hover:text-orange-accent transition-colors">1</span>
                                 </label>
                                 <label class="flex flex-col items-center gap-2 cursor-pointer group">
-                                    <input type="radio" name="entry.1994711284" value="2" class="scale-radio w-6 h-6">
+                                    <input type="radio" name="digital_skills" value="2" class="scale-radio w-6 h-6">
                                     <span class="text-slate-300 font-bold group-hover:text-orange-accent transition-colors">2</span>
                                 </label>
                                 <label class="flex flex-col items-center gap-2 cursor-pointer group">
-                                    <input type="radio" name="entry.1994711284" value="3" class="scale-radio w-6 h-6">
+                                    <input type="radio" name="digital_skills" value="3" class="scale-radio w-6 h-6">
                                     <span class="text-slate-300 font-bold group-hover:text-orange-accent transition-colors">3</span>
                                 </label>
                                 <label class="flex flex-col items-center gap-2 cursor-pointer group">
-                                    <input type="radio" name="entry.1994711284" value="4" class="scale-radio w-6 h-6">
+                                    <input type="radio" name="digital_skills" value="4" class="scale-radio w-6 h-6">
                                     <span class="text-slate-300 font-bold group-hover:text-orange-accent transition-colors">4</span>
                                 </label>
                                 <label class="flex flex-col items-center gap-2 cursor-pointer group">
-                                    <input type="radio" name="entry.1994711284" value="5" class="scale-radio w-6 h-6">
+                                    <input type="radio" name="digital_skills" value="5" class="scale-radio w-6 h-6">
                                     <span class="text-slate-300 font-bold group-hover:text-orange-accent transition-colors">5</span>
                                 </label>
                             </div>
-                            <span class="text-slate-400 text-xs md:text-sm font-medium w-16 text-left" dir="rtl">גבוהה מאוד</span>
+                            <span class="text-slate-400 text-xs md:text-sm font-medium w-16 md:w-20 text-left" dir="rtl">גבוהה מאוד</span>
                         </div>
                     </div>
 
+                    <!-- Frequency of computer/phone use -->
                     <div class="mb-8">
                         <label class="block text-slate-200 mb-3 font-medium">באיזו תדירות את/ה משתמש/ת במחשב או בטלפון לצרכים מקצועיים?</label>
                         <div class="flex flex-col gap-3">
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="entry.1277192779" value="מספר פעמים ביום" class="hidden custom-radio">מספר פעמים ביום</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="entry.1277192779" value="פעם ביום" class="hidden custom-radio">פעם ביום</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="entry.1277192779" value="מספר פעמים בשבוע" class="hidden custom-radio">מספר פעמים בשבוע</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="entry.1277192779" value="לעיתים רחוקות" class="hidden custom-radio">לעיתים רחוקות</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="entry.1277192779" value="כמעט אף פעם" class="hidden custom-radio">כמעט אף פעם</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="device_frequency" value="מספר פעמים ביום" class="hidden custom-radio">מספר פעמים ביום</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="device_frequency" value="פעם ביום" class="hidden custom-radio">פעם ביום</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="device_frequency" value="מספר פעמים בשבוע" class="hidden custom-radio">מספר פעמים בשבוע</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="device_frequency" value="לעיתים רחוקות" class="hidden custom-radio">לעיתים רחוקות</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="device_frequency" value="כמעט אף פעם" class="hidden custom-radio">כמעט אף פעם</label>
                         </div>
                     </div>
 
+                    <!-- Training -->
                     <div class="mb-8">
                         <label class="block text-slate-200 mb-3 font-medium">האם השתתפת בעבר בהכשרה בנושא בינה מלאכותית?</label>
                         <div class="flex flex-col gap-3">
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="entry.723416189" value="כן, בהכשרה מסודרת" class="hidden custom-radio">כן, בהכשרה מסודרת</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="entry.723416189" value="כן, בהרצאה או בסדנה קצרה" class="hidden custom-radio">כן, בהרצאה או בסדנה קצרה</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="entry.723416189" value="למדתי באופן עצמאי" class="hidden custom-radio">למדתי באופן עצמאי</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="entry.723416189" value="לא השתתפתי בהכשרה" class="hidden custom-radio">לא השתתפתי בהכשרה</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="entry.723416189" value="איני זוכר/ת" class="hidden custom-radio">איני זוכר/ת</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="ai_training" value="כן, בהכשרה מסודרת" class="hidden custom-radio">כן, בהכשרה מסודרת</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="ai_training" value="כן, בהרצאה או בסדנה קצרה" class="hidden custom-radio">כן, בהרצאה או בסדנה קצרה</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="ai_training" value="למדתי באופן עצמאי" class="hidden custom-radio">למדתי באופן עצמאי</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="ai_training" value="לא השתתפתי בהכשרה" class="hidden custom-radio">לא השתתפתי בהכשרה</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-4 text-slate-300 text-sm"><input type="radio" name="ai_training" value="איני זוכר/ת" class="hidden custom-radio">איני זוכר/ת</label>
                         </div>
                     </div>
 
+                    <!-- Tools (Checkboxes) -->
                     <div class="mb-8">
                         <label class="block text-slate-200 mb-3 font-medium">באילו כלי בינה מלאכותית השתמשת? (אפשר לבחור כמה)</label>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.680738754" value="ChatGPT" class="hidden custom-checkbox"><span class="text-slate-300">ChatGPT</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.680738754" value="Microsoft Copilot" class="hidden custom-checkbox"><span class="text-slate-300">Microsoft Copilot</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.680738754" value="Google Gemini" class="hidden custom-checkbox"><span class="text-slate-300">Google Gemini</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.680738754" value="Claude" class="hidden custom-checkbox"><span class="text-slate-300">Claude</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.680738754" value="Perplexity" class="hidden custom-checkbox"><span class="text-slate-300">Perplexity</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.680738754" value="Canva עם כלי AI" class="hidden custom-checkbox"><span class="text-slate-300">Canva עם כלי AI</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.680738754" value="כלי AI להכנת מצגות" class="hidden custom-checkbox"><span class="text-slate-300">כלי AI להכנת מצגות</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.680738754" value="כלי AI ליצירת תמונות" class="hidden custom-checkbox"><span class="text-slate-300">כלי AI ליצירת תמונות</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.680738754" value="כלי AI לתרגום, כתיבה או סיכום מסמכים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">כלי AI לתרגום, כתיבה או סיכום מסמכים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.680738754" value="כלי אחר" class="hidden custom-checkbox"><span class="text-slate-300">כלי אחר</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.680738754" value="לא השתמשתי" class="hidden custom-checkbox"><span class="text-slate-300">לא השתמשתי</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_tools" value="ChatGPT" class="hidden custom-checkbox"><span class="text-slate-300">ChatGPT</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_tools" value="Microsoft Copilot" class="hidden custom-checkbox"><span class="text-slate-300">Microsoft Copilot</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_tools" value="Google Gemini" class="hidden custom-checkbox"><span class="text-slate-300">Google Gemini</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_tools" value="Claude" class="hidden custom-checkbox"><span class="text-slate-300">Claude</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_tools" value="Perplexity" class="hidden custom-checkbox"><span class="text-slate-300">Perplexity</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_tools" value="Canva עם כלי AI" class="hidden custom-checkbox"><span class="text-slate-300">Canva עם כלי AI</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_tools" value="כלי AI להכנת מצגות" class="hidden custom-checkbox"><span class="text-slate-300">כלי AI להכנת מצגות</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_tools" value="כלי AI ליצירת תמונות" class="hidden custom-checkbox"><span class="text-slate-300">כלי AI ליצירת תמונות</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_tools" value="כלי AI לתרגום, כתיבה או סיכום מסמכים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">כלי AI לתרגום, כתיבה או סיכום מסמכים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_tools" value="כלי אחר" class="hidden custom-checkbox"><span class="text-slate-300">כלי אחר</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_tools" value="לא השתמשתי" class="hidden custom-checkbox"><span class="text-slate-300">לא השתמשתי</span></label>
                         </div>
                     </div>
 
+                    <!-- Purposes (Checkboxes) -->
                     <div class="mb-8">
                         <label class="block text-slate-200 mb-3 font-medium">לאילו מטרות השתמשת בבינה מלאכותית?</label>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.993302206" value="חיפוש והסבר של מידע מקצועי" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">חיפוש והסבר של מידע מקצועי</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.993302206" value="הכנת הדרכות או מצגות" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">הכנת הדרכות או מצגות</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.993302206" value="כתיבת מסמכים, מכתבים או הודעות" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">כתיבת מסמכים, מכתבים או הודעות</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.993302206" value="סיכום מאמרים או מסמכים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">סיכום מאמרים או מסמכים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.993302206" value="תרגום טקסטים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">תרגום טקסטים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.993302206" value="הכנת שאלות, מבחנים או משחקי למידה" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">הכנת שאלות, מבחנים או משחקי למידה</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.993302206" value="הכנת חומרי הדרכה למטופלים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">הכנת חומרי הדרכה למטופלים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.993302206" value="יצירת תמונות או עיצובים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">יצירת תמונות או עיצובים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.993302206" value="עזרה במחקר או בניתוח נתונים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">עזרה במחקר או בניתוח נתונים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.993302206" value="שימוש אישי" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">שימוש אישי</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.993302206" value="לא השתמשתי" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">לא השתמשתי</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_purposes" value="חיפוש והסבר של מידע מקצועי" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">חיפוש והסבר של מידע מקצועי</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_purposes" value="הכנת הדרכות או מצגות" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">הכנת הדרכות או מצגות</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_purposes" value="כתיבת מסמכים, מכתבים או הודעות" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">כתיבת מסמכים, מכתבים או הודעות</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_purposes" value="סיכום מאמרים או מסמכים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">סיכום מאמרים או מסמכים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_purposes" value="תרגום טקסטים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">תרגום טקסטים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_purposes" value="הכנת שאלות, מבחנים או משחקי למידה" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">הכנת שאלות, מבחנים או משחקי למידה</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_purposes" value="הכנת חומרי הדרכה למטופלים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">הכנת חומרי הדרכה למטופלים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_purposes" value="יצירת תמונות או עיצובים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">יצירת תמונות או עיצובים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_purposes" value="עזרה במחקר או בניתוח נתונים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">עזרה במחקר או בניתוח נתונים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_purposes" value="שימוש אישי" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">שימוש אישי</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="ai_purposes" value="לא השתמשתי" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">לא השתמשתי</span></label>
                         </div>
                     </div>
 
+                    <!-- Confidence Scale -->
                     <div class="bg-metal-800 rounded-xl p-6 border border-metal-700 mb-8 shadow-inner">
                         <label class="block text-slate-200 mb-6 font-medium text-center md:text-lg">עד כמה את מרגיש/ה בטוח/ה להשתמש בכלי בינה מלאכותית?</label>
-                        <div class="flex justify-between items-center w-full max-w-lg mx-auto" dir="ltr">
-                            <span class="text-slate-400 text-xs md:text-sm font-medium w-16 text-right" dir="rtl">כלל לא בטוחה</span>
-                            <div class="flex flex-row gap-4 md:gap-8 z-10" dir="ltr">
+                        <div class="flex justify-between items-center max-w-lg mx-auto relative px-2" dir="ltr">
+                            <span class="text-slate-400 text-xs md:text-sm font-medium w-16 md:w-20 text-right" dir="rtl">כלל לא בטוחה</span>
+                            <div class="flex flex-row gap-4 md:gap-8 z-10">
                                 <label class="flex flex-col items-center gap-2 cursor-pointer group">
-                                    <input type="radio" name="entry.493462135" value="1" class="scale-radio w-6 h-6">
+                                    <input type="radio" name="ai_confidence" value="1" class="scale-radio w-6 h-6">
                                     <span class="text-slate-300 font-bold group-hover:text-orange-accent transition-colors">1</span>
                                 </label>
                                 <label class="flex flex-col items-center gap-2 cursor-pointer group">
-                                    <input type="radio" name="entry.493462135" value="2" class="scale-radio w-6 h-6">
+                                    <input type="radio" name="ai_confidence" value="2" class="scale-radio w-6 h-6">
                                     <span class="text-slate-300 font-bold group-hover:text-orange-accent transition-colors">2</span>
                                 </label>
                                 <label class="flex flex-col items-center gap-2 cursor-pointer group">
-                                    <input type="radio" name="entry.493462135" value="3" class="scale-radio w-6 h-6">
+                                    <input type="radio" name="ai_confidence" value="3" class="scale-radio w-6 h-6">
                                     <span class="text-slate-300 font-bold group-hover:text-orange-accent transition-colors">3</span>
                                 </label>
                                 <label class="flex flex-col items-center gap-2 cursor-pointer group">
-                                    <input type="radio" name="entry.493462135" value="4" class="scale-radio w-6 h-6">
+                                    <input type="radio" name="ai_confidence" value="4" class="scale-radio w-6 h-6">
                                     <span class="text-slate-300 font-bold group-hover:text-orange-accent transition-colors">4</span>
                                 </label>
                                 <label class="flex flex-col items-center gap-2 cursor-pointer group">
-                                    <input type="radio" name="entry.493462135" value="5" class="scale-radio w-6 h-6">
+                                    <input type="radio" name="ai_confidence" value="5" class="scale-radio w-6 h-6">
                                     <span class="text-slate-300 font-bold group-hover:text-orange-accent transition-colors">5</span>
                                 </label>
                             </div>
-                            <span class="text-slate-400 text-xs md:text-sm font-medium w-16 text-left" dir="rtl">בטוחה מאוד</span>
+                            <span class="text-slate-400 text-xs md:text-sm font-medium w-16 md:w-20 text-left" dir="rtl">בטוחה מאוד</span>
                         </div>
                     </div>
 
                     <div class="flex justify-between mt-8 border-t border-metal-700 pt-6">
                         <button type="button" onclick="nextStep(1)" class="px-6 py-3 rounded-xl text-slate-400 hover:text-white transition-colors">חזור</button>
                         <button type="button" onclick="nextStep(3)" class="btn-orange px-8 py-3 rounded-xl font-bold flex items-center gap-2 text-lg">
-                            המשך <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                            המשך <svg xmlns="http://www.w3.org/2000/svg" class="animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                         </button>
                     </div>
                 </div>
 
                 <div id="step-3" class="step-container">
                     <h2 class="text-2xl font-display font-bold text-white mb-6 border-b border-metal-700 pb-3 flex items-center gap-2">
-                        <span class="text-orange-accent">03.</span> ידע בסיסי
+                        <span class="text-orange-accent">03.</span> חלק ג׳ – בדיקת ידע בסיסי
                     </h2>
 
+                    <!-- AI Accuracy -->
                     <div class="mb-6">
                         <label class="block text-slate-200 mb-3 font-medium">האם מידע שמתקבל מכלי בינה מלאכותית תמיד מדויק ואמין?</label>
                         <div class="flex flex-col gap-2">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.456755355" value="כן, תמיד" class="hidden custom-radio">כן, תמיד</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.456755355" value="בדרך כלל כן ואין צורך לבדוק אותו" class="hidden custom-radio">בדרך כלל כן ואין צורך לבדוק אותו</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.456755355" value="לא, יש לבדוק ולאמת את המידע" class="hidden custom-radio">לא, יש לבדוק ולאמת את המידע</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.456755355" value="איני יודעת" class="hidden custom-radio">איני יודעת</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_accuracy" value="כן, תמיד" class="hidden custom-radio">כן, תמיד</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_accuracy" value="בדרך כלל כן ואין צורך לבדוק אותו" class="hidden custom-radio">בדרך כלל כן ואין צורך לבדוק אותו</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_accuracy" value="לא, יש לבדוק ולאמת את המידע" class="hidden custom-radio">לא, יש לבדוק ולאמת את המידע</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_accuracy" value="איני יודעת" class="hidden custom-radio">איני יודעת</label>
                         </div>
                     </div>
 
+                    <!-- Prompt Def -->
                     <div class="mb-6">
                         <label class="block text-slate-200 mb-3 font-medium">מהו פרומפט?</label>
                         <div class="flex flex-col gap-2">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.482001611" value="הוראה או שאלה שאנו כותבים לכלי בינה מלאכותית" class="hidden custom-radio">הוראה או שאלה שאנו כותבים לכלי בינה מלאכותית</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.482001611" value="שם של תוכנה רפואית" class="hidden custom-radio">שם של תוכנה רפואית</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.482001611" value="סיסמה לשימוש ב־ChatGPT" class="hidden custom-radio">סיסמה לשימוש ב־ChatGPT</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.482001611" value="התשובה שמייצרת הבינה המלאכותית" class="hidden custom-radio">התשובה שמייצרת הבינה המלאכותית</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.482001611" value="איני יודעת" class="hidden custom-radio">איני יודעת</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_prompt" value="הוראה או שאלה שאנו כותבים לכלי בינה מלאכותית" class="hidden custom-radio">הוראה או שאלה שאנו כותבים לכלי בינה מלאכותית</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_prompt" value="שם של תוכנה רפואית" class="hidden custom-radio">שם של תוכנה רפואית</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_prompt" value="סיסמה לשימוש ב־ChatGPT" class="hidden custom-radio">סיסמה לשימוש ב־ChatGPT</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_prompt" value="התשובה שמייצרת הבינה המלאכותית" class="hidden custom-radio">התשובה שמייצרת הבינה המלאכותית</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_prompt" value="איני יודעת" class="hidden custom-radio">איני יודעת</label>
                         </div>
                     </div>
 
+                    <!-- Best Prompt -->
                     <div class="mb-6">
                         <label class="block text-slate-200 mb-3 font-medium">איזה מהפרומפטים הבאים צפוי להפיק תשובה טובה יותר?</label>
                         <div class="flex flex-col gap-2">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.340388242" value="כתוב לי משהו על סוכרת" class="hidden custom-radio">כתוב לי משהו על סוכרת</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.340388242" value="כתוב דף הדרכה קצר ופשוט למטופל שאובחן לאחרונה בסוכרת מסוג 2, כולל תזונה, פעילות גופנית ומעקב" class="hidden custom-radio">כתוב דף הדרכה קצר ופשוט למטופל שאובחן לאחרונה בסוכרת מסוג 2, כולל תזונה, פעילות גופנית ומעקב</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.340388242" value="סוכרת" class="hidden custom-radio">סוכרת</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.340388242" value="תן מידע" class="hidden custom-radio">תן מידע</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_best_prompt" value="כתוב לי משהו על סוכרת" class="hidden custom-radio">כתוב לי משהו על סוכרת</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_best_prompt" value="כתוב דף הדרכה קצר ופשוט למטופל שאובחן לאחרונה בסוכרת מסוג 2, כולל תזונה, פעילות גופנית ומעקב" class="hidden custom-radio">כתוב דף הדרכה קצר ופשוט למטופל שאובחן לאחרונה בסוכרת מסוג 2, כולל תזונה, פעילות גופנית ומעקב</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_best_prompt" value="סוכרת" class="hidden custom-radio">סוכרת</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_best_prompt" value="תן מידע" class="hidden custom-radio">תן מידע</label>
                         </div>
                     </div>
 
+                    <!-- Privacy -->
                     <div class="mb-6">
                         <label class="block text-slate-200 mb-3 font-medium">האם מותר להזין לכלי בינה מלאכותית ציבורי פרטים מזהים של מטופל?</label>
                         <div class="flex flex-col gap-2">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.1972436403" value="כן, כאשר המטרה מקצועית" class="hidden custom-radio">כן, כאשר המטרה מקצועית</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.1972436403" value="כן, אם לא מציינים את שם המשפחה" class="hidden custom-radio">כן, אם לא מציינים את שם המשפחה</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.1972436403" value="לא, אין להזין מידע מזהה או מידע רפואי חסוי ללא מערכת מאושרת והרשאה" class="hidden custom-radio">לא, אין להזין מידע מזהה או מידע רפואי חסוי ללא מערכת מאושרת והרשאה</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.1972436403" value="איני יודעת" class="hidden custom-radio">איני יודעת</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_privacy" value="כן, כאשר המטרה מקצועית" class="hidden custom-radio">כן, כאשר המטרה מקצועית</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_privacy" value="כן, אם לא מציינים את שם המשפחה" class="hidden custom-radio">כן, אם לא מציינים את שם המשפחה</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_privacy" value="לא, אין להזין מידע מזהה או מידע רפואי חסוי ללא מערכת מאושרת והרשאה" class="hidden custom-radio">לא, אין להזין מידע מזהה או מידע רפואי חסוי ללא מערכת מאושרת והרשאה</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_privacy" value="איני יודעת" class="hidden custom-radio">איני יודעת</label>
                         </div>
                     </div>
 
+                    <!-- Verification -->
                     <div class="mb-6">
                         <label class="block text-slate-200 mb-3 font-medium">כאשר מתקבלת תשובה רפואית מכלי בינה מלאכותית, מה נכון לעשות?</label>
                         <div class="flex flex-col gap-2">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.670295251" value="להשתמש בה מיד" class="hidden custom-radio">להשתמש בה מיד</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.670295251" value="להעביר אותה למטופל ללא שינוי" class="hidden custom-radio">להעביר אותה למטופל ללא שינוי</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.670295251" value="לבדוק אותה מול מקורות מקצועיים, נהלים ושיקול דעת קליני" class="hidden custom-radio">לבדוק אותה מול מקורות מקצועיים, נהלים ושיקול דעת קליני</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.670295251" value="להניח שהיא עדכנית" class="hidden custom-radio">להניח שהיא עדכנית</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.670295251" value="איני יודעת" class="hidden custom-radio">איני יודעת</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_verify" value="להשתמש בה מיד" class="hidden custom-radio">להשתמש בה מיד</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_verify" value="להעביר אותה למטופל ללא שינוי" class="hidden custom-radio">להעביר אותה למטופל ללא שינוי</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_verify" value="לבדוק אותה מול מקורות מקצועיים, נהלים ושיקול דעת קליני" class="hidden custom-radio">לבדוק אותה מול מקורות מקצועיים, נהלים ושיקול דעת קליני</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_verify" value="להניח שהיא עדכנית" class="hidden custom-radio">להניח שהיא עדכנית</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="knowledge_verify" value="איני יודעת" class="hidden custom-radio">איני יודעת</label>
                         </div>
                     </div>
 
                     <div class="flex justify-between mt-8 border-t border-metal-700 pt-6">
                         <button type="button" onclick="nextStep(2)" class="px-6 py-3 rounded-xl text-slate-400 hover:text-white transition-colors">חזור</button>
                         <button type="button" onclick="nextStep(4)" class="btn-orange px-8 py-3 rounded-xl font-bold flex items-center gap-2 text-lg">
-                            המשך <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                            המשך <svg xmlns="http://www.w3.org/2000/svg" class="animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                         </button>
                     </div>
                 </div>
 
                 <div id="step-4" class="step-container">
                     <h2 class="text-2xl font-display font-bold text-white mb-6 border-b border-metal-700 pb-3 flex items-center gap-2">
-                        <span class="text-orange-accent">04.</span> עמדות וחששות
+                        <span class="text-orange-accent">04.</span> חלק ה' – עמדות וחששות
                     </h2>
                     
                     <p class="text-slate-300 mb-6">עד כמה את מסכימ/ה עם המשפטים הבאים?</p>
@@ -586,185 +634,194 @@
                             <tbody>
                                 <tr>
                                     <td class="text-right font-medium border-l border-metal-700">בינה מלאכותית יכולה לסייע בהפחתת העומס המנהלתי</td>
-                                    <td><input type="radio" name="entry.1849000631" value="כלל לא מסכימה" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.1849000631" value="לא מסכימה" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.1849000631" value="ניטרלית" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.1849000631" value="מסכימה" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.1849000631" value="מסכימה מאוד" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_admin" value="כלל לא מסכימה" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_admin" value="לא מסכימה" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_admin" value="ניטרלית" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_admin" value="מסכימה" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_admin" value="מסכימה מאוד" class="scale-radio"></td>
                                 </tr>
                                 <tr>
                                     <td class="text-right font-medium border-l border-metal-700">בינה מלאכותית יכולה לשפר את איכות הטיפול שאנו מעניקים</td>
-                                    <td><input type="radio" name="entry.2087845328" value="כלל לא מסכימה" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.2087845328" value="לא מסכימה" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.2087845328" value="ניטרלית" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.2087845328" value="מסכימה" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.2087845328" value="מסכימה מאוד" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_quality" value="כלל לא מסכימה" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_quality" value="לא מסכימה" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_quality" value="ניטרלית" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_quality" value="מסכימה" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_quality" value="מסכימה מאוד" class="scale-radio"></td>
                                 </tr>
                                 <tr>
                                     <td class="text-right font-medium border-l border-metal-700">אני חוששת לקבל מידע רפואי לא מדויק מהמערכת</td>
-                                    <td><input type="radio" name="entry.1154285473" value="כלל לא מסכימה" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.1154285473" value="לא מסכימה" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.1154285473" value="ניטרלית" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.1154285473" value="מסכימה" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.1154285473" value="מסכימה מאוד" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_fear_accuracy" value="כלל לא מסכימה" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_fear_accuracy" value="לא מסכימה" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_fear_accuracy" value="ניטרלית" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_fear_accuracy" value="מסכימה" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_fear_accuracy" value="מסכימה מאוד" class="scale-radio"></td>
                                 </tr>
                                 <tr>
                                     <td class="text-right font-medium border-l border-metal-700">אני חוששת מפגיעה ביחס האישי למטופל בעקבות שימוש בבינה מלאכותית</td>
-                                    <td><input type="radio" name="entry.823078591" value="כלל לא מסכימה" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.823078591" value="לא מסכימה" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.823078591" value="ניטרלית" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.823078591" value="מסכימה" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.823078591" value="מסכימה מאוד" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_fear_personal" value="כלל לא מסכימה" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_fear_personal" value="לא מסכימה" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_fear_personal" value="ניטרלית" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_fear_personal" value="מסכימה" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_fear_personal" value="מסכימה מאוד" class="scale-radio"></td>
                                 </tr>
                                 <tr>
                                     <td class="text-right font-medium border-l border-metal-700">חשוב שאחיות ילמדו להשתמש בכלים אלו כדי להישאר מעודכנות טכנולוגית</td>
-                                    <td><input type="radio" name="entry.2058193646" value="כלל לא מסכימה" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.2058193646" value="לא מסכימה" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.2058193646" value="ניטרלית" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.2058193646" value="מסכימה" class="scale-radio"></td>
-                                    <td><input type="radio" name="entry.2058193646" value="מסכימה מאוד" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_importance" value="כלל לא מסכימה" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_importance" value="לא מסכימה" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_importance" value="ניטרלית" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_importance" value="מסכימה" class="scale-radio"></td>
+                                    <td><input type="radio" name="attitude_importance" value="מסכימה מאוד" class="scale-radio"></td>
                                 </tr>
                                 <tr>
                                     <td class="text-right font-medium border-l border-metal-700 border-b-0">הייתי רוצה לשלב כלי בינה מלאכותית בשגרת העבודה שלי</td>
-                                    <td class="border-b-0"><input type="radio" name="entry.1439380987" value="כלל לא מסכימה" class="scale-radio"></td>
-                                    <td class="border-b-0"><input type="radio" name="entry.1439380987" value="לא מסכימה" class="scale-radio"></td>
-                                    <td class="border-b-0"><input type="radio" name="entry.1439380987" value="ניטרלית" class="scale-radio"></td>
-                                    <td class="border-b-0"><input type="radio" name="entry.1439380987" value="מסכימה" class="scale-radio"></td>
-                                    <td class="border-b-0"><input type="radio" name="entry.1439380987" value="מסכימה מאוד" class="scale-radio"></td>
+                                    <td class="border-b-0"><input type="radio" name="attitude_integrate" value="כלל לא מסכימה" class="scale-radio"></td>
+                                    <td class="border-b-0"><input type="radio" name="attitude_integrate" value="לא מסכימה" class="scale-radio"></td>
+                                    <td class="border-b-0"><input type="radio" name="attitude_integrate" value="ניטרלית" class="scale-radio"></td>
+                                    <td class="border-b-0"><input type="radio" name="attitude_integrate" value="מסכימה" class="scale-radio"></td>
+                                    <td class="border-b-0"><input type="radio" name="attitude_integrate" value="מסכימה מאוד" class="scale-radio"></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
+                    <!-- Barriers (Checkboxes) -->
                     <div class="mb-6">
                         <label class="block text-slate-200 mb-3 font-medium">מה מונע ממך כיום להשתמש בכלי בינה מלאכותית? (אפשר לסמן כמה)</label>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.189731038" value="חוסר ידע" class="hidden custom-checkbox"><span class="text-slate-300">חוסר ידע</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.189731038" value="חוסר ניסיון" class="hidden custom-checkbox"><span class="text-slate-300">חוסר ניסיון</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.189731038" value="חוסר זמן" class="hidden custom-checkbox"><span class="text-slate-300">חוסר זמן</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.189731038" value="חשש משימוש לא נכון" class="hidden custom-checkbox"><span class="text-slate-300">חשש משימוש לא נכון</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.189731038" value="חשש מפגיעה בפרטיות" class="hidden custom-checkbox"><span class="text-slate-300">חשש מפגיעה בפרטיות</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.189731038" value="חשש שהמידע אינו מדויק" class="hidden custom-checkbox"><span class="text-slate-300">חשש שהמידע אינו מדויק</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.189731038" value="קושי טכנולוגי" class="hidden custom-checkbox"><span class="text-slate-300">קושי טכנולוגי</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.189731038" value="חוסר גישה לכלים מתאימים" class="hidden custom-checkbox"><span class="text-slate-300">חוסר גישה לכלים מתאימים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.189731038" value="מגבלות ארגוניות" class="hidden custom-checkbox"><span class="text-slate-300">מגבלות ארגוניות</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.189731038" value="איני יודעת כיצד הכלים יכולים לסייע לי" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">איני יודעת כיצד הכלים יכולים לסייע לי</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.189731038" value="אין לי חסמים משמעותיים" class="hidden custom-checkbox"><span class="text-slate-300">אין לי חסמים משמעותיים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.189731038" value="אחר" class="hidden custom-checkbox"><span class="text-slate-300">אחר</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="barriers" value="חוסר ידע" class="hidden custom-checkbox"><span class="text-slate-300">חוסר ידע</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="barriers" value="חוסר ניסיון" class="hidden custom-checkbox"><span class="text-slate-300">חוסר ניסיון</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="barriers" value="חוסר זמן" class="hidden custom-checkbox"><span class="text-slate-300">חוסר זמן</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="barriers" value="חשש משימוש לא נכון" class="hidden custom-checkbox"><span class="text-slate-300">חשש משימוש לא נכון</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="barriers" value="חשש מפגיעה בפרטיות" class="hidden custom-checkbox"><span class="text-slate-300">חשש מפגיעה בפרטיות</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="barriers" value="חשש שהמידע אינו מדויק" class="hidden custom-checkbox"><span class="text-slate-300">חשש שהמידע אינו מדויק</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="barriers" value="קושי טכנולוגי" class="hidden custom-checkbox"><span class="text-slate-300">קושי טכנולוגי</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="barriers" value="חוסר גישה לכלים מתאימים" class="hidden custom-checkbox"><span class="text-slate-300">חוסר גישה לכלים מתאימים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="barriers" value="מגבלות ארגוניות" class="hidden custom-checkbox"><span class="text-slate-300">מגבלות ארגוניות</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="barriers" value="איני יודעת כיצד הכלים יכולים לסייע לי" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">איני יודעת כיצד הכלים יכולים לסייע לי</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="barriers" value="אין לי חסמים משמעותיים" class="hidden custom-checkbox"><span class="text-slate-300">אין לי חסמים משמעותיים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="barriers" value="אחר" class="hidden custom-checkbox"><span class="text-slate-300">אחר</span></label>
                         </div>
                     </div>
 
                     <div class="flex justify-between mt-8 border-t border-metal-700 pt-6">
                         <button type="button" onclick="nextStep(3)" class="px-6 py-3 rounded-xl text-slate-400 hover:text-white transition-colors">חזור</button>
                         <button type="button" onclick="nextStep(5)" class="btn-orange px-8 py-3 rounded-xl font-bold flex items-center gap-2 text-lg">
-                            המשך <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                            המשך <svg xmlns="http://www.w3.org/2000/svg" class="animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                         </button>
                     </div>
                 </div>
 
                 <div id="step-5" class="step-container">
                     <h2 class="text-2xl font-display font-bold text-white mb-6 border-b border-metal-700 pb-3 flex items-center gap-2">
-                        <span class="text-orange-accent">05.</span> צרכים מקצועיים
+                        <span class="text-orange-accent">05.</span> חלק ד׳ – צרכים מקצועיים
                     </h2>
 
+                    <!-- Learning Areas (Checkboxes) -->
                     <div class="mb-6">
                         <label class="block text-slate-200 mb-3 font-medium">באילו תחומים היית רוצה ללמוד להשתמש בבינה מלאכותית במסגרת עבודתך? (אפשר לבחור כמה)</label>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.425169191" value="כתיבת חומרי הדרכה למטופלים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">כתיבת חומרי הדרכה למטופלים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.425169191" value="התאמת הדרכה לשפה ולרמת ההבנה של המטופל" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">התאמת הדרכה לשפה ולרמת ההבנה של המטופל</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.425169191" value="הכנת מצגות והדרכות לצוות" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">הכנת מצגות והדרכות לצוות</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.425169191" value="יצירת שאלות, חידונים ומשחקי למידה" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">יצירת שאלות, חידונים ומשחקי למידה</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.425169191" value="חיפוש וסיכום מידע מקצועי" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">חיפוש וסיכום מידע מקצועי</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.425169191" value="כתיבת מסמכים, מכתבים ודוחות" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">כתיבת מסמכים, מכתבים ודוחות</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.425169191" value="הכנת תוכניות עבודה ופרויקטים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">הכנת תוכניות עבודה ופרויקטים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.425169191" value="שיפור תהליכי איכות ובטיחות" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">שיפור תהליכי איכות ובטיחות</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.425169191" value="בניית שאלונים וסקרים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">בניית שאלונים וסקרים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.425169191" value="עזרה בתכנון מחקר" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">עזרה בתכנון מחקר</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.425169191" value="ניתוח נתונים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">ניתוח נתונים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.425169191" value="יצירת תמונות, פליירים וחומרי הסברה" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">יצירת תמונות, פליירים וחומרי הסברה</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.425169191" value="שימוש אחראי ושמירה על פרטיות" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">שימוש אחראי ושמירה על פרטיות</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.425169191" value="אחר" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">אחר</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.425169191" value="בניית אתרים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">בניית אתרים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="learn_areas" value="כתיבת חומרי הדרכה למטופלים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">כתיבת חומרי הדרכה למטופלים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="learn_areas" value="התאמת הדרכה לשפה ולרמת ההבנה של המטופל" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">התאמת הדרכה לשפה ולרמת ההבנה של המטופל</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="learn_areas" value="הכנת מצגות והדרכות לצוות" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">הכנת מצגות והדרכות לצוות</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="learn_areas" value="יצירת שאלות, חידונים ומשחקי למידה" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">יצירת שאלות, חידונים ומשחקי למידה</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="learn_areas" value="חיפוש וסיכום מידע מקצועי" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">חיפוש וסיכום מידע מקצועי</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="learn_areas" value="כתיבת מסמכים, מכתבים ודוחות" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">כתיבת מסמכים, מכתבים ודוחות</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="learn_areas" value="הכנת תוכניות עבודה ופרויקטים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">הכנת תוכניות עבודה ופרויקטים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="learn_areas" value="שיפור תהליכי איכות ובטיחות" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">שיפור תהליכי איכות ובטיחות</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="learn_areas" value="בניית שאלונים וסקרים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">בניית שאלונים וסקרים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="learn_areas" value="עזרה בתכנון מחקר" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">עזרה בתכנון מחקר</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="learn_areas" value="ניתוח נתונים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">ניתוח נתונים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="learn_areas" value="יצירת תמונות, פליירים וחומרי הסברה" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">יצירת תמונות, פליירים וחומרי הסברה</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="learn_areas" value="שימוש אחראי ושמירה על פרטיות" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">שימוש אחראי ושמירה על פרטיות</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="learn_areas" value="אחר" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">אחר</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="learn_areas" value="בניית אתרים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">בניית אתרים</span></label>
                         </div>
                     </div>
 
+                    <!-- Time consuming -->
                     <div class="mb-6">
                         <label class="block text-slate-200 mb-2 font-medium">אילו משימות בעבודתך גוזלות זמן רב והיית רוצה שבינה מלאכותית תסייע בהן?</label>
-                        <textarea name="entry.522587782" rows="2" class="metallic-input w-full p-3 rounded-xl"></textarea>
+                        <textarea name="time_consuming_tasks" rows="2" class="metallic-input w-full p-3 rounded-xl"></textarea>
                     </div>
 
+                    <!-- 3 Important Topics (Checkboxes) -->
                     <div class="mb-6">
                         <label class="block text-slate-200 mb-3 font-medium">מהם שלושת הנושאים החשובים ביותר עבורך בהכשרה?</label>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.1041792829" value="היכרות בסיסית עם בינה מלאכותית" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">היכרות בסיסית עם בינה מלאכותית</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.1041792829" value="היכרות עם כלי AI שונים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">היכרות עם כלי AI שונים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.1041792829" value="כתיבת פרומפטים יעילים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">כתיבת פרומפטים יעילים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.1041792829" value="הכנת מצגות וחומרי הדרכה" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">הכנת מצגות וחומרי הדרכה</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.1041792829" value="חיפוש מידע רפואי אמין" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">חיפוש מידע רפואי אמין</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.1041792829" value="סיכום מאמרים ומסמכים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">סיכום מאמרים ומסמכים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.1041792829" value="כתיבה מקצועית" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">כתיבה מקצועית</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.1041792829" value="יצירת שאלונים ומשחקים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">יצירת שאלונים ומשחקים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.1041792829" value="עזרה במחקר וניתוח נתונים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">עזרה במחקר וניתוח נתונים</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.1041792829" value="פרטיות, סודיות ואבטחת מידע" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">פרטיות, סודיות ואבטחת מידע</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.1041792829" value="מגבלות וסיכונים של בינה מלאכותית" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">מגבלות וסיכונים של בינה מלאכותית</span></label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="entry.1041792829" value="תרגול מעשי" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">תרגול מעשי</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="important_topics" value="היכרות בסיסית עם בינה מלאכותית" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">היכרות בסיסית עם בינה מלאכותית</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="important_topics" value="היכרות עם כלי AI שונים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">היכרות עם כלי AI שונים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="important_topics" value="כתיבת פרומפטים יעילים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">כתיבת פרומפטים יעילים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="important_topics" value="הכנת מצגות וחומרי הדרכה" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">הכנת מצגות וחומרי הדרכה</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="important_topics" value="חיפוש מידע רפואי אמין" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">חיפוש מידע רפואי אמין</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="important_topics" value="סיכום מאמרים ומסמכים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">סיכום מאמרים ומסמכים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="important_topics" value="כתיבה מקצועית" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">כתיבה מקצועית</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="important_topics" value="יצירת שאלונים ומשחקים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">יצירת שאלונים ומשחקים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="important_topics" value="עזרה במחקר וניתוח נתונים" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">עזרה במחקר וניתוח נתונים</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="important_topics" value="פרטיות, סודיות ואבטחת מידע" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">פרטיות, סודיות ואבטחת מידע</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="important_topics" value="מגבלות וסיכונים של בינה מלאכותית" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">מגבלות וסיכונים של בינה מלאכותית</span></label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 flex items-center gap-3"><input type="checkbox" name="important_topics" value="תרגול מעשי" class="hidden custom-checkbox"><span class="text-slate-300 text-sm">תרגול מעשי</span></label>
                         </div>
                     </div>
 
+                    <!-- Learning Preference -->
                     <div class="mb-6">
                         <label class="block text-slate-200 mb-3 font-medium">באיזה אופן היית מעדיפה ללמוד?</label>
                         <div class="flex flex-col gap-2">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.95428768" value="הסבר קצר והרצאה" class="hidden custom-radio">הסבר קצר והרצאה</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.95428768" value="הדגמה חיה של הכלים" class="hidden custom-radio">הדגמה חיה של הכלים</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.95428768" value="תרגול אישי בטלפון או במחשב" class="hidden custom-radio">תרגול אישי בטלפון או במחשב</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.95428768" value="עבודה בקבוצות" class="hidden custom-radio">עבודה בקבוצות</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.95428768" value="תרגול על מקרים מעבודת האחות" class="hidden custom-radio">תרגול על מקרים מעבודת האחות</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.95428768" value="משחק או חידון" class="hidden custom-radio">משחק או חידון</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.95428768" value="מאגר פרומפטים להמשך שימוש" class="hidden custom-radio">מאגר פרומפטים להמשך שימוש</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="learning_preference" value="הסבר קצר והרצאה" class="hidden custom-radio">הסבר קצר והרצאה</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="learning_preference" value="הדגמה חיה של הכלים" class="hidden custom-radio">הדגמה חיה של הכלים</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="learning_preference" value="תרגול אישי בטלפון או במחשב" class="hidden custom-radio">תרגול אישי בטלפון או במחשב</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="learning_preference" value="עבודה בקבוצות" class="hidden custom-radio">עבודה בקבוצות</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="learning_preference" value="תרגול על מקרים מעבודת האחות" class="hidden custom-radio">תרגול על מקרים מעבודת האחות</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="learning_preference" value="משחק או חידון" class="hidden custom-radio">משחק או חידון</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="learning_preference" value="מאגר פרומפטים להמשך שימוש" class="hidden custom-radio">מאגר פרומפטים להמשך שימוש</label>
                         </div>
                     </div>
 
                     <div class="flex justify-between mt-8 border-t border-metal-700 pt-6">
                         <button type="button" onclick="nextStep(4)" class="px-6 py-3 rounded-xl text-slate-400 hover:text-white transition-colors">חזור</button>
                         <button type="button" onclick="nextStep(6)" class="btn-orange px-8 py-3 rounded-xl font-bold flex items-center gap-2 text-lg">
-                            המשך <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                            המשך <svg xmlns="http://www.w3.org/2000/svg" class="animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                         </button>
                     </div>
                 </div>
 
                 <div id="step-6" class="step-container">
                     <h2 class="text-2xl font-display font-bold text-white mb-6 border-b border-metal-700 pb-3 flex items-center gap-2">
-                        <span class="text-orange-accent">06.</span> ציפיות מההכשרה
+                        <span class="text-orange-accent">06.</span> חלק ו׳ – ציפיות מההכשרה
                     </h2>
 
+                    <!-- Commitment -->
                     <div class="mb-6">
                         <label class="block text-slate-200 mb-3 font-medium">האם את/ה מוכנ/ה להתחייב להשתתפות פעילה בהכשרה ולהקדיש זמן אישי, מעבר לשעות העבודה, לצורך תרגול, ביצוע משימות והעמקת הלמידה?</label>
                         <div class="flex flex-col gap-2">
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.922861709" value="כן, מוכן/ה להתחייב" class="hidden custom-radio">כן, מוכן/ה להתחייב</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.922861709" value="כן, בהתאם להיקף הזמן שיידרש" class="hidden custom-radio">כן, בהתאם להיקף הזמן שיידרש</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.922861709" value="אולי, תלוי בדרישות ההכשרה" class="hidden custom-radio">אולי, תלוי בדרישות ההכשרה</label>
-                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="entry.922861709" value="לא" class="hidden custom-radio">לא</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="commitment" value="כן, מוכן/ה להתחייב" class="hidden custom-radio">כן, מוכן/ה להתחייב</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="commitment" value="כן, בהתאם להיקף הזמן שיידרש" class="hidden custom-radio">כן, בהתאם להיקף הזמן שיידרש</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="commitment" value="אולי, תלוי בדרישות ההכשרה" class="hidden custom-radio">אולי, תלוי בדרישות ההכשרה</label>
+                            <label class="tile-label cursor-pointer rounded-xl p-3 text-slate-300"><input type="radio" name="commitment" value="לא" class="hidden custom-radio">לא</label>
                         </div>
                     </div>
 
+                    <!-- Open Q 1 -->
                     <div class="mb-6">
                         <label class="block text-slate-200 mb-2 font-medium">מה היית רוצה לדעת או להיות מסוגלת לבצע בסיום ההכשרה?</label>
-                        <textarea name="entry.1728452111" rows="3" class="metallic-input w-full p-3 rounded-xl"></textarea>
+                        <textarea name="expectations" rows="3" class="metallic-input w-full p-3 rounded-xl"></textarea>
                     </div>
 
+                    <!-- Open Q 2 -->
                     <div class="mb-6">
                         <label class="block text-slate-200 mb-2 font-medium">כתוב/י דוגמה למשימה אמיתית מעבודתך שהיית רוצה לתרגל בעזרת בינה מלאכותית.</label>
-                        <textarea name="entry.303831494" rows="3" class="metallic-input w-full p-3 rounded-xl"></textarea>
+                        <textarea name="example_task" rows="3" class="metallic-input w-full p-3 rounded-xl"></textarea>
                     </div>
 
+                    <!-- Final Thank You Message before submit -->
                     <div class="mt-8 mb-4 p-5 rounded-xl border border-metal-600 bg-metal-800/80 text-center shadow-lg">
                         <p class="text-white font-medium text-lg leading-relaxed">
                             תודה על השתתפותך.<br>תשובותייך יסייעו לנו לבנות הכשרה מעשית, בטוחה ורלוונטית לצוותי האחיות.
                         </p>
                     </div>
-
+                    
                     <div id="error-message" class="hidden p-4 mb-4 text-sm text-red-400 bg-red-900/20 rounded-lg text-center font-bold border border-red-800">
-                        אירעה שגיאה בשליחת השאלון, ייתכן שישנה בעיית חיבור לשרתי גוגל. אנא נסה שוב.
+                        אירעה שגיאה בשליחת השאלון. אנא נסה שוב.
                     </div>
 
                     <div class="flex justify-between mt-10 pt-6 border-t border-metal-700">
@@ -772,7 +829,7 @@
                         <!-- SUBMIT BUTTON -->
                         <button type="submit" id="submit-btn" class="btn-orange px-10 py-4 rounded-xl font-bold flex items-center gap-3 text-xl">
                             <span>שליחת שאלון סופית</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                             </svg>
                         </button>
@@ -784,7 +841,7 @@
             <!-- Success Message (Hidden initially) -->
             <div id="success-message" class="hidden text-center py-16 animate-slide-up">
                 <div class="w-24 h-24 bg-gradient-to-br from-[#10B981] to-[#047857] rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_40px_rgba(16,185,129,0.4)] border-4 border-metal-800">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" class="text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="text-white" style="width: 48px; height: 48px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
                     </svg>
                 </div>
@@ -794,8 +851,9 @@
                     אנו מצפים לראותך בהכשרה הקרובה.
                 </p>
                 
+                <!-- Reset Button -->
                 <button onclick="resetForm()" class="bg-metal-700 hover:bg-metal-600 border border-metal-500 text-slate-200 px-6 py-3 rounded-xl text-sm transition-colors mx-auto flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                     </svg>
                     חזרה להתחלה (בדיקה)
@@ -805,6 +863,7 @@
         </div>
     </main>
 
+    <!-- Footer Right Text -->
     <div class="fixed bottom-2 right-2 md:bottom-4 md:right-4 text-slate-500 text-[10px] md:text-xs font-medium z-20 opacity-80 bg-metal-900/50 p-1.5 rounded-md backdrop-blur-sm">
         נוצר ע"י : שטיבלמן נטלה - אחות מומחית קלינית בסוכרת
     </div>
@@ -843,65 +902,120 @@
             // איפוס לבדיקות
             document.getElementById('ai-nursing-form').reset();
             document.getElementById('success-message').classList.add('hidden');
+            document.getElementById('error-message').classList.add('hidden');
             document.getElementById('ai-nursing-form').style.display = 'block';
             document.getElementById('progress-section').style.display = 'block';
-            
-            nextStep(1); 
             
             // איפוס כפתור שליחה
             const submitBtn = document.getElementById('submit-btn');
             if (submitBtn) {
                 submitBtn.innerHTML = `
                     <span>שליחת שאלון סופית</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                     </svg>
                 `;
                 submitBtn.disabled = false;
-                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
             }
+            nextStep(1); 
         }
-        
+
+        // --- הגדרות חיבור ל-Google Forms ---
+        // יש להדביק כאן את מזהה הטופס שלך מתוך הקישור
+        // לדוגמה, אם הקישור הוא: https://docs.google.com/forms/d/e/1FAIpQLSc_xxxx/viewform
+        // ה-FORM_ID הוא: 1FAIpQLSc_xxxx
+        const GOOGLE_FORM_ID = '1FAIpQLSdnBVGIL2YkvHV_wYRX4UZbO9UgZuTfpjVc4E_XC_L8ba-QpA';
+        const GOOGLE_FORM_ACTION_URL = `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`;
+
+        // מיפוי שדות הטופס (ה-name שהגדרנו בקוד ה-HTML) למזהי ה-entry.ID של גוגל פורמס.
+        // אנא הדבק את המספרים המדויקים מתוך הקישור של טופס מילוי מראש (Pre-filled link).
+        // לדוגמה: 'entry.123456789'
+        const formMapping = {
+            'age_group': 'entry.737270739',
+            'gender': 'entry.589549655',
+            'education': 'entry.838715345',
+            'role': 'entry.1129218118',
+            'experience': 'entry.1435252496',
+            'workplace': 'entry.1127049248',
+            'job_percentage': 'entry.110079847',
+            'tasks': 'entry.1953469363', // Note: For multiple selection radios/checkboxes, same name is used
+            'digital_skills': 'entry.1994711284',
+            'device_frequency': 'entry.1277192779',
+            'ai_training': 'entry.723416189',
+            'ai_tools': 'entry.680738754', // Multiple checkboxes
+            'ai_purposes': 'entry.993302206', // Multiple checkboxes
+            'ai_confidence': 'entry.493462135',
+            'knowledge_accuracy': 'entry.456755355',
+            'knowledge_prompt': 'entry.482001611',
+            'knowledge_best_prompt': 'entry.340388242',
+            'knowledge_privacy': 'entry.1972436403',
+            'knowledge_verify': 'entry.670295251',
+            'attitude_admin': 'entry.1849000631',
+            'attitude_quality': 'entry.2087845328',
+            'attitude_fear_accuracy': 'entry.1154285473',
+            'attitude_fear_personal': 'entry.823078591',
+            'attitude_importance': 'entry.2058193646',
+            'attitude_integrate': 'entry.1439380987',
+            'barriers': 'entry.189731038', // Multiple checkboxes
+            'learn_areas': 'entry.425169191', // Multiple checkboxes
+            'time_consuming_tasks': 'entry.522587782', // Textarea
+            'important_topics': 'entry.1041792829', // Multiple checkboxes
+            'learning_preference': 'entry.95428768',
+            'commitment': 'entry.922861709',
+            'expectations': 'entry.1728452111', // Textarea
+            'example_task': 'entry.303831494'  // Textarea
+        };
+
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('ai-nursing-form');
             const submitBtn = document.getElementById('submit-btn');
 
-            if (form && submitBtn) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault(); // מניעת שליחה רגילה
+            if (form) {
+                form.addEventListener('submit', async function(e) {
+                    // ביטול פעולת ברירת המחדל של שליחת טופס (שגורמת לריענון הדף)
+                    e.preventDefault(); 
                     
                     // שינוי כפתור למצב טעינה
                     submitBtn.innerHTML = '<span class="animate-pulse font-bold text-xl">שולח נתונים...</span>';
                     submitBtn.disabled = true;
-                    submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+                    document.getElementById('error-message').classList.add('hidden');
 
-                    // איסוף הנתונים
+                    // איסוף הנתונים מהטופס
                     const formData = new FormData(form);
-                    const params = new URLSearchParams();
                     
-                    for (const [key, value] of formData.entries()) {
-                        params.append(key, value);
+                    // המרת הנתונים לפורמט שגוגל מצפה לו (URLSearchParams)
+                    const googleFormParams = new URLSearchParams();
+
+                    // לולאה שעוברת על כל השדות בטופס שלנו וממפה אותם לשדות של גוגל
+                    for (const [name, value] of formData.entries()) {
+                        const googleEntryId = formMapping[name];
+                        if (googleEntryId) {
+                            // שימו לב: עבור תיבות סימון (checkboxes) מרובות באותו שם, 
+                            // formData.entries() יחזיר את כולן, ו-URLSearchParams.append יוסיף את כולן נכון.
+                            googleFormParams.append(googleEntryId, value);
+                        }
                     }
 
-                    // הפתרון המוחלט לעקיפת חסימות הדפדפן (CORS):
-                    // הזרקת כל התשובות ישירות לתוך כתובת ה-URL עצמה, כך שהדפדפן לא יכול למחוק את הנתונים
-                    const finalUrl = form.action + '?' + params.toString();
+                    try {
+                        // שליחת הנתונים כבקשת POST מאחורי הקלעים באמצעות fetch
+                        await fetch(GOOGLE_FORM_ACTION_URL, {
+                            method: 'POST',
+                            mode: 'no-cors', // קריטי כדי שגוגל לא יחסום אותנו בגלל שגיאות CORS
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded' // קריטי כדי שגוגל יבין את הנתונים בגוף הבקשה
+                            },
+                            body: googleFormParams.toString() // המרת הנתונים למחרוזת
+                        });
 
-                    // שליחה באמצעות Fetch API
-                    fetch(finalUrl, {
-                        method: 'POST',
-                        mode: 'no-cors'
-                    })
-                    .then(() => {
+                        // אם הגענו לכאן (ובזכות no-cors כמעט תמיד נגיע), נניח שהשליחה הצליחה
                         showSuccess();
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
+
+                    } catch (error) {
+                        console.error('Error submitting form:', error);
                         document.getElementById('error-message').classList.remove('hidden');
                         submitBtn.innerHTML = 'שגיאה בשליחה. נסה שוב';
                         submitBtn.disabled = false;
-                        submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
-                    });
+                    }
                 });
             }
         });
