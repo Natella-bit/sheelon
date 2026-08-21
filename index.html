@@ -879,19 +879,18 @@
                     const formData = new FormData(form);
                     const params = new URLSearchParams();
                     
-                    // המרה ידנית לטקסט مقودד - מבטיח שגוגל יקבל את התוכן במלואו
                     for (const [key, value] of formData.entries()) {
                         params.append(key, value);
                     }
 
+                    // הפתרון המוחלט לעקיפת חסימות הדפדפן (CORS):
+                    // הזרקת כל התשובות ישירות לתוך כתובת ה-URL עצמה, כך שהדפדפן לא יכול למחוק את הנתונים
+                    const finalUrl = form.action + '?' + params.toString();
+
                     // שליחה באמצעות Fetch API
-                    fetch(form.action, {
+                    fetch(finalUrl, {
                         method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: params.toString()
+                        mode: 'no-cors'
                     })
                     .then(() => {
                         showSuccess();
